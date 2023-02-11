@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonTypeTheme } from '../theme';
+import { ButtonTheme } from '../theme';
 
 export enum ButtonType {
   Primary = 'primary',
@@ -7,16 +7,19 @@ export enum ButtonType {
 }
 
 export type ButtonProps = {
-  type: ButtonType
+  type?: ButtonType
   disabled?: boolean
-  children?: React.ReactNode;
 } & React.HTMLAttributes<HTMLButtonElement>;
 
 function Button(props: ButtonProps) {
-  const { type, children, ...rest } = props;
+  const { children, type, ...rest } = props;
 
   return (
-    <button className={ButtonTypeTheme[type]} {...rest}>{children}</button>
+    <button
+      className={ButtonTheme[type ?? ButtonType.Primary]}
+      {...rest}>
+        {children}
+    </button>
   )
 }
 
