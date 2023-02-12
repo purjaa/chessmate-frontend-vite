@@ -8,7 +8,7 @@ export enum ButtonType {
 }
 
 export enum ButtonSize {
-  Normal = 'normal',
+  Regular = 'regular',
   Small = 'small',
   Large = 'large'
 }
@@ -24,7 +24,7 @@ function Button(props: ButtonProps) {
 
   return (
     <button
-      className={clsx(ButtonThemeType['common'], ButtonThemeType[type ?? ButtonType.Primary], ButtonThemeSize[size ?? ButtonSize.Normal])}
+      className={clsx(ButtonThemeType['common'], ButtonThemeType[type ?? ButtonType.Primary], ButtonThemeSize[size ?? ButtonSize.Regular])}
       {...rest}>
         {children}
     </button>
