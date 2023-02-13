@@ -14,7 +14,7 @@ import { PrivateRoute } from './utils';
 
 function App() {
   return (
-    <div>
+    <>
       <Router basename={'/'}>
         <Routes>
           <Route
@@ -30,7 +30,7 @@ function App() {
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </Router>
-    </div>
+    </>
   );
 }
 
