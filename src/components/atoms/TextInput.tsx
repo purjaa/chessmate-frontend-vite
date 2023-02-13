@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { TextInputContainerTheme, TextInputTheme, TextInputLabelTheme } from '../theme';
+import { TextInputContainerStyle, TextInputStyle, TextInputLabelStyle } from './textInputStyle';
 
 export type TextInputProps = {
   label?: string;
@@ -11,12 +11,12 @@ function TextInput(props: TextInputProps) {
   const { children, label, ...rest } = props;
 
   return (
-    <div className={clsx(TextInputContainerTheme)}>
-      <label className={clsx(TextInputLabelTheme.common)}>
+    <div className={clsx(TextInputContainerStyle)}>
+      <label className={clsx(TextInputLabelStyle)}>
         {label}
       </label>
       <input
-        className={clsx(TextInputTheme.common)}
+        className={clsx(TextInputStyle.valid)}
         {...rest}
       />
     </div>

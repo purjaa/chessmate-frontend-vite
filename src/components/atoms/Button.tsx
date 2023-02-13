@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { ButtonThemeType, ButtonThemeSize } from '../theme';
+import { ButtonStyleType, ButtonStyleSize } from './ButtonStyle';
 
 export enum ButtonType {
   Primary = 'primary',
@@ -26,9 +26,9 @@ function Button(props: ButtonProps) {
   return (
     <button
       className={clsx(
-        ButtonThemeType['common'],
-        ButtonThemeType[type ?? ButtonType.Primary],
-        ButtonThemeSize[size ?? ButtonSize.Regular],
+        ButtonStyleType['common'],
+        ButtonStyleType[type ?? ButtonType.Primary],
+        ButtonStyleSize[size ?? ButtonSize.Regular],
         fullWidth && 'tw-w-full'
       )}
       {...rest}>
