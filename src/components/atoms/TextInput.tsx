@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { TextInputContainerStyle, TextInputStyle, TextInputLabelStyle } from './textInputStyle';
+import { TextInputContainerStyle, TextInputStyle, TextInputLabelStyle } from './TextInputStyle';
 
 export type TextInputProps = {
   label?: string;
