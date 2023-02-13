@@ -4,11 +4,12 @@ import TextInput from '../atoms/TextInput';
 
 function LoginForm() {
   return (
-    <div className='tw-flex tw-flex-col tw-gap-y-4 tw-w-1/5 tw-rounded-mw'>
+    <div className='tw-flex tw-flex-col tw-bg-white tw-gap-y-4 tw-w-1/4 tw-p-4 tw-rounded-mw tw-shadow-lg'>
+      <h1>Log In</h1>
       <TextInput label='Username' />
       <TextInput label='Password' />
       <div className='tw-mt-2'>
-        <Button size={ButtonSize.Large} fullWidth={true}>Log in</Button>
+        <Button size={ButtonSize.Regular} fullWidth={true}>Log in</Button>
       </div>
     </div>
   );
