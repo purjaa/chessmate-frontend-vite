@@ -5,6 +5,7 @@ import { TextInputContainerStyle, TextInputStyle, TextInputLabelStyle } from './
 export type TextInputProps = {
   label?: string;
   disabled?: boolean;
+  required?: boolean;
 } & React.HTMLAttributes<HTMLInputElement>;
 
 function TextInput(props: TextInputProps) {
@@ -16,7 +17,7 @@ function TextInput(props: TextInputProps) {
         {label}
       </label>
       <input
-        className={clsx(TextInputStyle.valid)}
+        className={clsx(TextInputStyle)}
         {...rest}
       />
     </div>
