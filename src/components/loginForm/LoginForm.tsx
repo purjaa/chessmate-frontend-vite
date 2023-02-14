@@ -6,7 +6,7 @@ import { loginUser } from '../../app/reducers/userSlice';
 import { useAppDispatch } from '../../app/utils/appUtils';
 import { InputFormStyle } from '../CommonStyle';
 import Button from '../atoms/Button';
-import ErrorNotification from '../atoms/ErrorNotification';
+import Notification, { NotificationType } from '../atoms/Notification';
 import TextInput from '../atoms/TextInput';
 
 type FormValues = {
@@ -82,7 +82,8 @@ function LoginForm() {
       />
       {
         (errors?.username || errors?.password || isLoginError) &&
-        <ErrorNotification
+        <Notification
+          type={NotificationType.Error}
           header="Error logging in"
           text="Invalid username or password"
         />
