@@ -1,5 +1,8 @@
-import React, { SyntheticEvent, useEffect } from 'react';
+import React, { useState, useEffect, SyntheticEvent } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../../app/reducers/userSlice';
+import { useAppDispatch } from '../../app/utils/appUtils';
 import Button from '../atoms/Button';
 import TextInput from '../atoms/TextInput';
 
@@ -9,12 +12,32 @@ type FormValues = {
 };
 
 function LoginForm() {
-  const { register, handleSubmit, setValue } = useForm<FormValues>();
+  const dispatch = useAppDispatch();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    reset,
+    formState: { errors }
+  } = useForm<FormValues>();
+  const navigate = useNavigate();
+  const [isLoginError, setIsLoginError] = useState(false);
 
   const onSubmit: SubmitHandler<FormValues> = formData => {
-    // TODO: Submit the values to the server and act
-    // according to the response.
-    console.log(formData);
+    dispatch(loginUser(formData.username, formData.password))
+      .then(isLoginSuccess => {
+        if (isLoginSuccess) {
+          navigate('/');
+        }
+        else {
+          reset(formValues => ({
+            ...formValues,
+            password: '',
+          }));
+          setIsLoginError(true);
+        }
+      })
+      .catch(error => console.log(error));
   };
 
   useEffect(() => {
@@ -53,6 +76,10 @@ function LoginForm() {
         name='password'
         onChange={e => setValue('password', e.target.value)}
       />
+      {
+        (errors?.username || errors?.password || isLoginError) &&
+        <div>Log in error</div>
+      }
       <div className='tw-mt-2'>
         <Button
           type="submit"
