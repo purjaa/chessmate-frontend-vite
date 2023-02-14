@@ -1,8 +1,17 @@
 import React from 'react';
+import clsx from 'clsx';
+import { PublicPageStyle } from '../CommonStyle';
+import Notification, { NotificationType } from '../../components/atoms/Notification';
 
 function ErrorPage() {
   return (
-    <div>Error Page</div>
+    <main className={clsx(PublicPageStyle)}>
+      <Notification
+        type={NotificationType.Error}
+        header="Page not found"
+        text='Oops! The requested page can not be found.'
+      />
+    </main>
   );
 }
 
