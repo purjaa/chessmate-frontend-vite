@@ -1,9 +1,9 @@
 import React from 'react';
 
-const LobbyPage = () => {
+function LobbyPage() {
   return (
     <div>Lobby Page</div>
   );
-};
+}
 
 export default LobbyPage;
