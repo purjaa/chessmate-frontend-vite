@@ -1,11 +1,13 @@
 import React from 'react';
+import clsx from 'clsx';
 import { LoginForm } from '../../components';
+import { PublicPageStyle } from '../CommonStyle';
 
 function LoginPage() {
   return (
-    <div className='tw-flex tw-h-full tw-bg-gray-200 tw-justify-center tw-items-center'>
+    <main className={clsx(PublicPageStyle)}>
       <LoginForm />
-    </div>
+    </main>
   );
 }
 

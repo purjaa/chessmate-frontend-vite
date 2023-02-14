@@ -1,8 +1,10 @@
 import React, { useState, useEffect, SyntheticEvent } from 'react';
+import clsx from 'clsx';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../../app/reducers/userSlice';
 import { useAppDispatch } from '../../app/utils/appUtils';
+import { InputFormStyle } from '../CommonStyle';
 import Button from '../atoms/Button';
 import ErrorNotification from '../atoms/ErrorNotification';
 import TextInput from '../atoms/TextInput';
@@ -63,7 +65,7 @@ function LoginForm() {
 
   return (
     <form
-      className="tw-flex tw-flex-col tw-bg-white tw-gap-y-4 tw-w-1/4 tw-p-4 tw-rounded-mw tw-shadow-lg"
+      className={clsx(InputFormStyle)}
       onSubmit={onPromise(handleSubmit(onSubmit))}
     >
       <h3 className="tw-text-center">Log Into Chessmate</h3>
@@ -75,6 +77,7 @@ function LoginForm() {
       <TextInput
         label="Password"
         name="password"
+        type="password"
         onChange={e => setValue('password', e.target.value)}
       />
       {
@@ -92,7 +95,7 @@ function LoginForm() {
           Log In
         </Button>
       </div>
-      <a href='/register'>Not registered? Click here.</a>
+      <a href="/register">Not registered? Click here.</a>
     </form>
   );
 }
