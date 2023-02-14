@@ -12,9 +12,9 @@ function ErrorNotification(props: ErrorNotificationProps) {
     <div className="tw-bg-red-300 tw-border-2 tw-border-red-500 tw-p-4">
       {
         header &&
-        <h4 className='tw-text-sm tw-text-red-700 tw-font-bold'>
+        <h5 className='tw-text-red-700 tw-font-bold'>
           {header}
-        </h4>
+        </h5>
       }
       <p className='tw-text-sm tw-text-red-700'>
         {text}

@@ -92,6 +92,7 @@ function LoginForm() {
           Log In
         </Button>
       </div>
+      <a href='/register'>Not registered? Click here.</a>
     </form>
   );
 }

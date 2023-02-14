@@ -11,7 +11,20 @@ h2 {
 h3 {
   @apply tw-text-lg;
 }
-
+h4 {
+  @apply tw-text-base;
+}
+h5 {
+  @apply tw-text-sm;
+}
+h6 {
+  @apply tw-text-xs;
+}
+a {
+  @apply tw-text-sm;
+  @apply tw-text-ocean-500;
+  @apply tw-underline;
+}
 body {
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
