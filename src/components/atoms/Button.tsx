@@ -21,11 +21,12 @@ export type ButtonProps = {
 } & React.HTMLAttributes<HTMLButtonElement>;
 
 function Button(props: ButtonProps) {
-  const { children, type, size, fullWidth, ...rest } = props;
+  const { children, className, type, size, fullWidth, ...rest } = props;
 
   return (
     <button
       className={clsx(
+        className,
         ButtonStyleType['common'],
         ButtonStyleType[type ?? ButtonType.Primary],
         ButtonStyleSize[size ?? ButtonSize.Regular],
