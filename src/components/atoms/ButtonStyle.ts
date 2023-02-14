@@ -1,4 +1,4 @@
-export const ButtonStyleType = {
+export const ButtonStyleVariant = {
   common: [
     'tw-rounded-md', 
     'tw-text-center',

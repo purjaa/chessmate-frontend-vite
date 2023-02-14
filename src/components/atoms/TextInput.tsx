@@ -2,11 +2,11 @@ import React from 'react';
 import clsx from 'clsx';
 import { TextInputContainerStyle, TextInputStyle, TextInputLabelStyle } from './TextInputStyle';
 
-export type TextInputProps = {
-  label?: string;
-  disabled?: boolean;
-  required?: boolean;
-} & React.HTMLAttributes<HTMLInputElement>;
+interface TextInputProps extends React.ComponentPropsWithoutRef<"input"> {
+  label?: string,
+  disabled?: boolean,
+  required?: boolean,
+};
 
 function TextInput(props: TextInputProps) {
   const { children, label, ...rest } = props;

@@ -1,8 +1,8 @@
 import React from 'react';
 import clsx from 'clsx';
-import { ButtonStyleType, ButtonStyleSize } from './ButtonStyle';
+import { ButtonStyleVariant, ButtonStyleSize } from './ButtonStyle';
 
-export enum ButtonType {
+export enum ButtonVariant {
   Primary = 'primary',
   Secondary = 'secondary'
 };
@@ -13,22 +13,22 @@ export enum ButtonSize {
   Large = 'large'
 };
 
-export type ButtonProps = {
-  type?: ButtonType;
+interface ButtonProps extends React.ComponentPropsWithoutRef<"button"> {
+  variant?: ButtonVariant;
   size?: ButtonSize;
   fullWidth?: boolean;
   disabled?: boolean;
-} & React.HTMLAttributes<HTMLButtonElement>;
+};
 
 function Button(props: ButtonProps) {
-  const { children, className, type, size, fullWidth, ...rest } = props;
+  const { children, className, variant, size, fullWidth, ...rest } = props;
 
   return (
     <button
       className={clsx(
         className,
-        ButtonStyleType['common'],
-        ButtonStyleType[type ?? ButtonType.Primary],
+        ButtonStyleVariant['common'],
+        ButtonStyleVariant[variant ?? ButtonVariant.Primary],
         ButtonStyleSize[size ?? ButtonSize.Regular],
         fullWidth && 'tw-w-full'
       )}
