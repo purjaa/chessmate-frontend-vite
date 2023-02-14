@@ -2,14 +2,14 @@ import React from 'react';
 import clsx from 'clsx';
 import { TextInputContainerStyle, TextInputStyle, TextInputLabelStyle } from './TextInputStyle';
 
-interface TextInputProps extends React.ComponentPropsWithoutRef<"input"> {
+interface TextInputProps extends React.ComponentPropsWithoutRef<'input'> {
   label?: string,
   disabled?: boolean,
   required?: boolean,
-};
+}
 
 function TextInput(props: TextInputProps) {
-  const { children, label, ...rest } = props;
+  const { label, ...rest } = props;
 
   return (
     <div className={clsx(TextInputContainerStyle)}>

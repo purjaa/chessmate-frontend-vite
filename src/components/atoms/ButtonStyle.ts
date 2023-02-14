@@ -1,6 +1,6 @@
 export const ButtonStyleVariant = {
   common: [
-    'tw-rounded-md', 
+    'tw-rounded-md',
     'tw-text-center',
     'tw-font-medium',
     'tw-transition',
@@ -14,7 +14,7 @@ export const ButtonStyleVariant = {
     'tw-bg-ocean-500',
     'tw-text-white',
 
-    'hover:tw-bg-ocean-600', 
+    'hover:tw-bg-ocean-600',
 
     'active:tw-bg-ocean-700'
   ],
@@ -48,4 +48,4 @@ export const ButtonStyleSize = {
     'tw-py-2.5',
     'tw-text-lg'
   ]
-}
+};
