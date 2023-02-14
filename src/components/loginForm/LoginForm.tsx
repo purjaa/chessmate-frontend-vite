@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../../app/reducers/userSlice';
 import { useAppDispatch } from '../../app/utils/appUtils';
 import Button from '../atoms/Button';
+import ErrorNotification from '../atoms/ErrorNotification';
 import TextInput from '../atoms/TextInput';
 
 type FormValues = {
@@ -62,25 +63,28 @@ function LoginForm() {
 
   return (
     <form
-      className='tw-flex tw-flex-col tw-bg-white tw-gap-y-4 tw-w-1/4 tw-p-4 tw-rounded-mw tw-shadow-lg'
+      className="tw-flex tw-flex-col tw-bg-white tw-gap-y-4 tw-w-1/4 tw-p-4 tw-rounded-mw tw-shadow-lg"
       onSubmit={onPromise(handleSubmit(onSubmit))}
     >
-      <h3 className='tw-text-center'>Log Into Chessmate</h3>
+      <h3 className="tw-text-center">Log Into Chessmate</h3>
       <TextInput
-        label='Username'
-        name='username'
+        label="Username"
+        name="username"
         onChange={e => setValue('username', e.target.value)}
       />
       <TextInput
-        label='Password'
-        name='password'
+        label="Password"
+        name="password"
         onChange={e => setValue('password', e.target.value)}
       />
       {
         (errors?.username || errors?.password || isLoginError) &&
-        <div>Log in error</div>
+        <ErrorNotification
+          header="Error logging in"
+          text="Invalid username or password"
+        />
       }
-      <div className='tw-mt-2'>
+      <div className="tw-mt-2">
         <Button
           type="submit"
           fullWidth={true}
