@@ -8,6 +8,7 @@ import { InputFormStyle } from '../CommonStyle';
 import Button from '../atoms/Button';
 import Notification, { NotificationType } from '../atoms/Notification';
 import TextInput from '../atoms/TextInput';
+import Loader from '../atoms/Loader';
 
 type FormValues = {
   username: string;
@@ -24,9 +25,11 @@ function LoginForm() {
     formState: { errors }
   } = useForm<FormValues>();
   const navigate = useNavigate();
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [isLoginError, setIsLoginError] = useState(false);
 
   const onSubmit: SubmitHandler<FormValues> = formData => {
+    setIsLoggingIn(true);
     dispatch(loginUser(formData.username, formData.password))
       .then(isLoginSuccess => {
         if (isLoginSuccess) {
@@ -38,9 +41,14 @@ function LoginForm() {
             password: '',
           }));
           setIsLoginError(true);
+          setIsLoggingIn(false);
         }
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.log(error);
+        setIsLoginError(true);
+        setIsLoggingIn(false);
+      });
   };
 
   useEffect(() => {
@@ -64,40 +72,43 @@ function LoginForm() {
   }
 
   return (
-    <form
-      className={clsx(InputFormStyle)}
-      onSubmit={onPromise(handleSubmit(onSubmit))}
-    >
-      <h3 className="tw-text-center">Log Into Chessmate</h3>
-      <TextInput
-        label="Username"
-        name="username"
-        onChange={e => setValue('username', e.target.value)}
-      />
-      <TextInput
-        label="Password"
-        name="password"
-        type="password"
-        onChange={e => setValue('password', e.target.value)}
-      />
-      {
-        (errors?.username || errors?.password || isLoginError) &&
-        <Notification
-          type={NotificationType.Error}
-          header="Error logging in"
-          text="Invalid username or password"
+    <>
+      { isLoggingIn && <Loader /> }
+      <form
+        className={clsx(InputFormStyle)}
+        onSubmit={onPromise(handleSubmit(onSubmit))}
+      >
+        <h3 className="tw-text-center">Log Into Chessmate</h3>
+        <TextInput
+          label="Username"
+          name="username"
+          onChange={e => setValue('username', e.target.value)}
         />
-      }
-      <div className="tw-mt-2">
-        <Button
-          type="submit"
-          fullWidth={true}
-        >
-          Log In
-        </Button>
-      </div>
-      <a href="/register">Not registered? Click here.</a>
-    </form>
+        <TextInput
+          label="Password"
+          name="password"
+          type="password"
+          onChange={e => setValue('password', e.target.value)}
+        />
+        {
+          (errors?.username || errors?.password || isLoginError) &&
+          <Notification
+            type={NotificationType.Error}
+            header="Error logging in"
+            text="Invalid username or password"
+          />
+        }
+        <div className="tw-mt-2">
+          <Button
+            type="submit"
+            fullWidth={true}
+          >
+            Log In
+          </Button>
+        </div>
+        <a href="/register">Not registered? Click here.</a>
+      </form>
+    </>
   );
 }
 
