@@ -1,4 +1,8 @@
-import React, { useState, useEffect, SyntheticEvent } from 'react';
+import React, {
+  useState,
+  useEffect,
+  SyntheticEvent
+} from 'react';
 import clsx from 'clsx';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';

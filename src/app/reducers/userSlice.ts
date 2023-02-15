@@ -1,12 +1,15 @@
 import { createSlice, PayloadAction, Dispatch } from '@reduxjs/toolkit';
 import userService from '../services/users';
 
-export interface UserState {
-  username: string | null,
+export interface RegisteredUserState {
+  username: string | null
+}
+
+export interface LoggedInUserState extends RegisteredUserState {
 	token: string | null,
 }
 
-const initialState: UserState = {
+const initialState: LoggedInUserState = {
   username: null,
   token: null,
 };
@@ -15,7 +18,10 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    login: (state, action: PayloadAction<UserState>) => {
+    register: (state, action:PayloadAction<RegisteredUserState>) => {
+      state.username = action.payload.username;
+    },
+    login: (state, action: PayloadAction<LoggedInUserState>) => {
       state.username = action.payload.username;
       state.token = action.payload.token;
     },
@@ -26,11 +32,21 @@ export const userSlice = createSlice({
   },
 });
 
-export const { login, logout } = userSlice.actions;
+export const { register, login, logout } = userSlice.actions;
 
-export const loginUser = (email: string, password: string) => {
+export const registerUser = ( email: string, username: string, password: string) => {
   return async (dispatch: Dispatch) => {
-    const response = await userService.login(email, password);
+    const response = await userService.register(email, username, password);
+    if (response.result === true) {
+      dispatch(register(response));
+    }
+    return response.result;
+  };
+};
+
+export const loginUser = (username: string, password: string) => {
+  return async (dispatch: Dispatch) => {
+    const response = await userService.login(username, password);
     if (response.result === true) {
       dispatch(login(response));
     }
