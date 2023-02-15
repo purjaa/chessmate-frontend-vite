@@ -1,6 +1,7 @@
 export const InputFormStyle = [
   'tw-flex',
   'tw-flex-col',
+  'tw-my-auto',
   'tw-bg-white',
   'tw-gap-y-4',
   'tw-w-1/4',

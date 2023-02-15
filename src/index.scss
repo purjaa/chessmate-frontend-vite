@@ -29,7 +29,8 @@ body {
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  height: 100vh;
+  @apply tw-h-screen;
+  @apply tw-bg-gray-200;
 }
 
 code {
@@ -38,6 +39,6 @@ code {
 }
 
 #root {
-  height: 100%;
+  @apply tw-h-full;
 }
 
