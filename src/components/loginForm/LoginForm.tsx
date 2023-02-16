@@ -1,10 +1,9 @@
 import React, {
   useState,
-  useEffect,
   SyntheticEvent
 } from 'react';
 import clsx from 'clsx';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../../app/reducers/userSlice';
 import { useAppDispatch } from '../../app/utils/appUtils';
@@ -19,15 +18,19 @@ type FormValues = {
   password: string;
 };
 
+const defaultValues = {
+  username: '',
+  password: ''
+};
+
 function LoginForm() {
   const dispatch = useAppDispatch();
   const {
-    register,
     handleSubmit,
-    setValue,
     reset,
+    control,
     formState: { errors }
-  } = useForm<FormValues>();
+  } = useForm<FormValues>({ defaultValues });
   const navigate = useNavigate();
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [isLoginError, setIsLoginError] = useState(false);
@@ -50,15 +53,14 @@ function LoginForm() {
       })
       .catch(error => {
         console.log(error);
+        reset(formValues => ({
+          ...formValues,
+          password: '',
+        }));
         setIsLoginError(true);
         setIsLoggingIn(false);
       });
   };
-
-  useEffect(() => {
-    register('username', { required: true });
-    register('password', { required: true });
-  }, []);
 
   // A workaround for error:
   // "Promise-returning function provided to attribute where a
@@ -83,19 +85,33 @@ function LoginForm() {
         onSubmit={onPromise(handleSubmit(onSubmit))}
       >
         <h3 className="tw-text-center">Log Into Chessmate</h3>
-        <TextInput
-          label="Username"
+        <Controller
           name="username"
-          onChange={e => setValue('username', e.target.value)}
+          control={control}
+          rules={{ required: true }}
+          render={({ field }) => (
+            <TextInput
+              label="Username"
+              required={errors?.username !== undefined}
+              {...field}
+            />
+          )}
         />
-        <TextInput
-          label="Password"
+        <Controller
           name="password"
-          type="password"
-          onChange={e => setValue('password', e.target.value)}
+          control={control}
+          rules={{ required: true }}
+          render={({ field }) => (
+            <TextInput
+              label="Password"
+              type="password"
+              required={errors?.password !== undefined}
+              {...field}
+            />
+          )}
         />
         {
-          (errors?.username || errors?.password || isLoginError) &&
+          isLoginError &&
           <Notification
             type={NotificationType.Error}
             header="Error logging in"
