@@ -1,11 +1,13 @@
 import React, {
   useState,
-  useEffect,
-  useRef,
   SyntheticEvent
 } from 'react';
 import clsx from 'clsx';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import {
+  useForm,
+  SubmitHandler,
+  Controller
+} from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { registerUser } from '../../app/reducers/userSlice';
 import { useAppDispatch } from '../../app/utils/appUtils';
@@ -19,29 +21,22 @@ type FormValues = {
   email: string;
   username: string;
   password: string;
-  repeatPassword: string;
+};
+
+const defaultValues = {
+  email: '',
+  username: '',
+  password: ''
 };
 
 function RegistrationForm() {
   const dispatch = useAppDispatch();
   const {
-    register,
     handleSubmit,
-    setValue,
     reset,
-    watch,
+    control,
     formState: { errors }
-  } = useForm<FormValues>({
-    defaultValues: {
-      email: '',
-      username: 'string',
-      password: 'string',
-      repeatPassword: 'string',
-    }
-  });
-  const password = useRef({});
-  password.current = watch('password', '');
-
+  } = useForm<FormValues>({ defaultValues });
   const navigate = useNavigate();
   const [isRegistering, setIsRegistering] = useState(false);
   const [isRegistrationError, setIsRegistrationError] = useState(false);
@@ -54,12 +49,7 @@ function RegistrationForm() {
         setIsRegistering(false);
         if (isRegistrationSuccess) {
           setIsRegistrationSuccess(isRegistrationSuccess);
-          reset({
-            email: '',
-            username: '',
-            password: '',
-            repeatPassword: ''
-          });
+          reset();
           setTimeout(() => {
             navigate('/login');
           }, 5000);
@@ -74,17 +64,6 @@ function RegistrationForm() {
         setIsRegistering(false);
       });
   };
-
-  useEffect(() => {
-    register('email', { required: true });
-    register('username', { required: true });
-    register('password', { required: true });
-    register('repeatPassword', {
-      required: true,
-      validate: value =>
-        value === password.current
-    });
-  }, []);
 
   // A workaround for error:
   // "Promise-returning function provided to attribute where a
@@ -109,52 +88,46 @@ function RegistrationForm() {
         onSubmit={onPromise(handleSubmit(onSubmit))}
       >
         <h3 className="tw-text-center">Register</h3>
-        <TextInput
-          label="Email"
+        <Controller
           name="email"
-          onChange={e => setValue('email', e.target.value)}
-          disabled={isRegistrationSuccess}
+          control={control}
+          rules={{ required: true }}
+          render={({ field }) => (
+            <TextInput
+              label="Email"
+              disabled={isRegistrationSuccess}
+              required={errors.email !== undefined}
+              {...field}
+            />
+          )}
         />
-        <TextInput
-          label="Username"
+        <Controller
           name="username"
-          onChange={e => setValue('username', e.target.value)}
-          disabled={isRegistrationSuccess}
+          control={control}
+          rules={{ required: true }}
+          render={({ field }) => (
+            <TextInput
+              label="Username"
+              disabled={isRegistrationSuccess}
+              required={errors.username !== undefined}
+              {...field}
+            />
+          )}
         />
-        <TextInput
-          label="Password"
+        <Controller
           name="password"
-          type="password"
-          onChange={e => setValue('password', e.target.value)}
-          disabled={isRegistrationSuccess}
+          control={control}
+          rules={{ required: true }}
+          render={({ field }) => (
+            <TextInput
+              label="Password"
+              type="password"
+              disabled={isRegistrationSuccess}
+              required={errors.password !== undefined}
+              {...field}
+            />
+          )}
         />
-        <TextInput
-          label="Repeat Password"
-          name="repeat-password"
-          type="password"
-          onChange={e => setValue('repeatPassword', e.target.value)}
-          disabled={isRegistrationSuccess}
-        />
-        {
-          (
-            errors?.email ||
-            errors?.username ||
-            errors?.password
-          ) &&
-          <Notification
-            type={NotificationType.Error}
-            header="Error in registration"
-            text="Please fill all fields"
-          />
-        }
-        {
-          errors.repeatPassword &&
-          <Notification
-            type={NotificationType.Error}
-            header="Error in registration"
-            text="The passwords do not match"
-          />
-        }
         {
           isRegistrationError &&
           <Notification
