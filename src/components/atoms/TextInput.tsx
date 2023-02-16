@@ -2,13 +2,13 @@ import React from 'react';
 import clsx from 'clsx';
 import { TextInputContainerStyle, TextInputStyle, TextInputLabelStyle } from './TextInputStyle';
 
-interface TextInputProps extends React.ComponentPropsWithoutRef<'input'> {
+interface TextInputProps extends React.ComponentPropsWithRef<'input'> {
   label?: string,
   disabled?: boolean,
   required?: boolean,
 }
 
-function TextInput(props: TextInputProps) {
+const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((props: TextInputProps, ref) => {
   const { label, ...rest } = props;
 
   return (
@@ -19,9 +19,11 @@ function TextInput(props: TextInputProps) {
       <input
         className={clsx(TextInputStyle)}
         {...rest}
+        ref={ref}
       />
     </div>
   );
-}
+});
+TextInput.displayName='TextInput';
 
 export default TextInput;
