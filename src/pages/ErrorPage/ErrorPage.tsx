@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { PublicPageStyle } from '../CommonStyle';
-import Notification, { NotificationType } from '../../components/atoms/Notification';
+import { Notification, NotificationType } from '../../components';
 
 function ErrorPage() {
   return (

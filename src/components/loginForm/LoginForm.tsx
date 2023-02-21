@@ -3,15 +3,22 @@ import React, {
   SyntheticEvent
 } from 'react';
 import clsx from 'clsx';
-import { useForm, SubmitHandler, Controller } from 'react-hook-form';
+import {
+  useForm,
+  SubmitHandler,
+  Controller
+} from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../../app/reducers/userSlice';
 import { useAppDispatch } from '../../app/utils/appUtils';
 import { InputFormStyle } from '../CommonStyle';
-import Button from '../atoms/Button';
-import Notification, { NotificationType } from '../atoms/Notification';
-import TextInput from '../atoms/TextInput';
-import Loader from '../atoms/Loader';
+import {
+  Button,
+  TextInput,
+  Notification,
+  NotificationType,
+  Loader
+} from '../';
 
 type FormValues = {
   username: string;

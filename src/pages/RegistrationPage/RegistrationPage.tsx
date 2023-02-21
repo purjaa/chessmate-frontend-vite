@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { PublicPageStyle } from '../CommonStyle';
-import RegistrationForm from '../../components/registrationForm/RegistrationForm';
+import { RegistrationForm } from '../../components';
 
 function RegistrationPage() {
   return (
