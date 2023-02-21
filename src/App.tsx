@@ -5,6 +5,9 @@ import {
   Route
 } from 'react-router-dom';
 import {
+  Header
+} from './components';
+import {
   LoginPage,
   RegistrationPage,
   LobbyPage,
@@ -15,6 +18,7 @@ import { PrivateRoute } from './utils';
 function App() {
   return (
     <>
+      <Header />
       <Router basename={'/'}>
         <Routes>
           <Route
