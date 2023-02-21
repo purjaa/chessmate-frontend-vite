@@ -17,7 +17,11 @@ module.exports = {
           600: '#036d82',
           700: '#004755'
         }
-      }
+      },
+      fontFamily: {
+        'roboto': ['Roboto', 'sans-serif'],
+        'roboto-slab': ['Roboto Slab', 'sans-serif']
+      },
     },
   },
 }
