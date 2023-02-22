@@ -3,5 +3,8 @@
   "username": "Username",
   "Password": "Password",
   "login": "Log In",
-  "notRegistered": "Not registered? Click here."
+  "notRegistered": "Not registered? Click here.",
+  "errors": { 
+    "invalidCredentials": "Invalid username or password"
+  }
 }

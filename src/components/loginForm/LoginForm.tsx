@@ -32,7 +32,7 @@ const defaultValues = {
 };
 
 function LoginForm() {
-  const { t } = useTranslation(['login', 'errors']);
+  const { t } = useTranslation(['login']);
   const dispatch = useAppDispatch();
   const {
     handleSubmit,
@@ -125,7 +125,7 @@ function LoginForm() {
           isLoginError &&
           <Notification
             type={NotificationType.Error}
-            description={t('errors:login.invalidCredentials')}
+            description={t('login:errors.invalidCredentials')}
           />
         }
         <div className="tw-mt-2">
