@@ -2,7 +2,7 @@
   "title": "Register",
   "email": "Email",
   "username": "Username",
-  "Password": "Password",
+  "password": "Password",
   "register": "Register",
   "registeredAlready": "Registered already? Click here.",
   "registeredSuccessfully": "You have registered successfully. Redirecting to Log In page...",
