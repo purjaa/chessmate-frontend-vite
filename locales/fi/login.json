@@ -1,0 +1,10 @@
+{
+  "title": "Kirjaudu Chessmateen",
+  "username": "Käyttäjänimi",
+  "password": "Salasana",
+  "login": "Kirjaudu",
+  "notRegistered": "Etkö ole rekisteröitynyt? Klikkaa tästä.",
+  "errors": { 
+    "invalidCredentials": "Käyttäjätunnus tai salasana ei täsmää"
+  }
+}

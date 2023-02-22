@@ -1,0 +1,12 @@
+{
+  "title": "Rekisteröidy",
+  "email": "Sähköpostiosoite",
+  "username": "Käyttäjänimi",
+  "password": "Salasana",
+  "register": "Rekisteröidy",
+  "registeredAlready": "Oletko jo rekisteröitynyt? Klikkaa tästä.",
+  "registeredSuccessfully": "Olet rekisteröitynyt onistuneesti. Ohjataan kirjautumissivulle...",
+  "errors": {
+    "userExists": "Sähköpostiosoite tai käyttäjänimi on jo olemassa. Valitse toinen, ole hyvä."
+  }
+}
