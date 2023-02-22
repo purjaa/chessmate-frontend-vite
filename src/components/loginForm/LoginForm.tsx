@@ -19,6 +19,7 @@ import {
   NotificationType,
   Loader
 } from '../';
+import { useTranslation } from 'react-i18next';
 
 type FormValues = {
   username: string;
@@ -31,6 +32,7 @@ const defaultValues = {
 };
 
 function LoginForm() {
+  const { t } = useTranslation(['login', 'errors']);
   const dispatch = useAppDispatch();
   const {
     handleSubmit,
@@ -91,14 +93,16 @@ function LoginForm() {
         className={clsx(InputFormStyle)}
         onSubmit={onPromise(handleSubmit(onSubmit))}
       >
-        <h3 className="tw-text-center">Log Into Chessmate</h3>
+        <h3 className="tw-text-center">
+          {t('login:title')}
+        </h3>
         <Controller
           name="username"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
             <TextInput
-              label="Username"
+              label={t('login:username')}
               required={errors?.username !== undefined}
               {...field}
             />
@@ -110,7 +114,7 @@ function LoginForm() {
           rules={{ required: true }}
           render={({ field }) => (
             <TextInput
-              label="Password"
+              label={t('login:password')}
               type="password"
               required={errors?.password !== undefined}
               {...field}
@@ -121,8 +125,7 @@ function LoginForm() {
           isLoginError &&
           <Notification
             type={NotificationType.Error}
-            header="Error logging in"
-            text="Invalid username or password"
+            description={t('errors:login.invalidCredentials')}
           />
         }
         <div className="tw-mt-2">
@@ -130,10 +133,12 @@ function LoginForm() {
             type="submit"
             fullWidth={true}
           >
-            Log In
+            {t('login:login')}
           </Button>
         </div>
-        <a href="/register">Not registered? Click here.</a>
+        <a href="/register">
+          {t('login:notRegistered')}
+        </a>
       </form>
     </>
   );

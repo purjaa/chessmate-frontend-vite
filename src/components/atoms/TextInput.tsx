@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { TextInputContainerStyle, TextInputStyle, TextInputLabelStyle } from './TextInputStyle';
 
 interface TextInputProps extends React.ComponentPropsWithRef<'input'> {
-  label?: string,
+  label?: string | undefined | null,
   disabled?: boolean,
   required?: boolean,
 }

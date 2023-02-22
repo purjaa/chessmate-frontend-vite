@@ -6,11 +6,11 @@ export const NotificationStyle = {
       'tw-border-red-500',
       'tw-p-4'
     ],
-    header: [
+    title: [
       'tw-text-red-700',
       'tw-font-bold'
     ],
-    text: [
+    description: [
       'tw-text-sm',
       'tw-text-red-700'
     ]
@@ -22,11 +22,11 @@ export const NotificationStyle = {
       'tw-border-green-500',
       'tw-p-4'
     ],
-    header: [
+    title: [
       'tw-text-green-700',
       'tw-font-bold'
     ],
-    text: [
+    description: [
       'tw-text-sm',
       'tw-text-green-700'
     ]

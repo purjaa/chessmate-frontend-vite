@@ -9,23 +9,23 @@ export enum NotificationType {
 
 interface NotificationProps {
   type: NotificationType
-  header?: string,
-  text: string
+  title?: string,
+  description: string
 }
 
 function Notification(props: NotificationProps) {
-  const { type, header, text } = props;
+  const { type, title, description } = props;
 
   return (
     <div className={clsx(NotificationStyle[type].container)}>
       {
-        header &&
-        <h5 className={clsx(NotificationStyle[type].header)}>
-          {header}
+        title &&
+        <h5 className={clsx(NotificationStyle[type].title)}>
+          {title}
         </h5>
       }
-      <p className={clsx(NotificationStyle[type].text)}>
-        {text}
+      <p className={clsx(NotificationStyle[type].description)}>
+        {description}
       </p>
     </div>
   );

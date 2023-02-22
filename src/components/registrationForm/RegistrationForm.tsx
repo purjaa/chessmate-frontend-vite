@@ -135,16 +135,14 @@ function RegistrationForm() {
           isRegistrationError &&
           <Notification
             type={NotificationType.Error}
-            header="Error in registration"
-            text="The email address or username already exist in the system. Please choose another."
+            description="The email address or username already exist in the system. Please choose another."
           />
         }
         {
           isRegistrationSuccess &&
           <Notification
             type={NotificationType.Success}
-            header="Registration success"
-            text='You have registered succesfully. Redirecting to Log In page...'
+            description='You have registered succesfully. Redirecting to Log In page...'
           />
         }
         <div className="tw-mt-2">
