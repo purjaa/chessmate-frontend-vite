@@ -7,7 +7,7 @@ i18n
   .use(initReactI18next)
   .init({
     backend: {
-      loadPath: '/public/locales/{{lng}}/{{ns}}.json'
+      loadPath: '/locales/{{lng}}/{{ns}}.json'
     },
     ns: ['login'], // Add this to prevent console 404 error on '/public/locales/{{lng}}/translation.json'
     fallbackLng: 'en',
