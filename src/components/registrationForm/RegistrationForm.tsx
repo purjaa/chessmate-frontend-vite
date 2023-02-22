@@ -19,6 +19,7 @@ import {
   NotificationType,
   Loader
 } from '../';
+import { useTranslation } from 'react-i18next';
 
 type FormValues = {
   email: string;
@@ -33,6 +34,7 @@ const defaultValues = {
 };
 
 function RegistrationForm() {
+  const { t } = useTranslation(['registration']);
   const dispatch = useAppDispatch();
   const {
     handleSubmit,
@@ -90,14 +92,16 @@ function RegistrationForm() {
         className={clsx(InputFormStyle)}
         onSubmit={onPromise(handleSubmit(onSubmit))}
       >
-        <h3 className="tw-text-center">Register</h3>
+        <h3 className="tw-text-center">
+          {t('registration:title')}
+        </h3>
         <Controller
           name="email"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
             <TextInput
-              label="Email"
+              label={t('registration:email')}
               disabled={isRegistrationSuccess}
               required={errors.email !== undefined}
               {...field}
@@ -110,7 +114,7 @@ function RegistrationForm() {
           rules={{ required: true }}
           render={({ field }) => (
             <TextInput
-              label="Username"
+              label={t('registration:username')}
               disabled={isRegistrationSuccess}
               required={errors.username !== undefined}
               {...field}
@@ -123,7 +127,7 @@ function RegistrationForm() {
           rules={{ required: true }}
           render={({ field }) => (
             <TextInput
-              label="Password"
+              label={t('registration:password')}
               type="password"
               disabled={isRegistrationSuccess}
               required={errors.password !== undefined}
@@ -135,14 +139,14 @@ function RegistrationForm() {
           isRegistrationError &&
           <Notification
             type={NotificationType.Error}
-            description="The email address or username already exist in the system. Please choose another."
+            description={t('registration:errors.userExists')}
           />
         }
         {
           isRegistrationSuccess &&
           <Notification
             type={NotificationType.Success}
-            description='You have registered succesfully. Redirecting to Log In page...'
+            description={t('registration:registeredSuccessfully')}
           />
         }
         <div className="tw-mt-2">
@@ -154,7 +158,9 @@ function RegistrationForm() {
             Register
           </Button>
         </div>
-        <a href="/login">Already registered? Click here.</a>
+        <a href="/login">
+          {t('registration:registeredAlready')}
+        </a>
       </form>
     </>
   );
