@@ -9,9 +9,9 @@ i18n
     backend: {
       loadPath: '/public/locales/{{lng}}/{{ns}}.json'
     },
+    ns: ['login'], // Add this to prevent console 404 error on '/public/locales/{{lng}}/translation.json'
     fallbackLng: 'en',
     debug: false,
-    defaultNS: 'common',
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
     },
