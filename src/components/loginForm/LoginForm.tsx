@@ -8,7 +8,10 @@ import {
   SubmitHandler,
   Controller
 } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import {
+  useNavigate,
+  Link
+} from 'react-router-dom';
 import { loginUser } from '../../app/reducers/userSlice';
 import { useAppDispatch } from '../../app/utils/appUtils';
 import { InputFormStyle } from '../CommonStyle';
@@ -136,9 +139,9 @@ function LoginForm() {
             {t('login:login')}
           </Button>
         </div>
-        <a href="/register">
+        <Link to="/register">
           {t('login:notRegistered')}
-        </a>
+        </Link>
       </form>
     </>
   );
