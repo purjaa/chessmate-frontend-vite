@@ -7,5 +7,6 @@ export const InputFormStyle = [
   'tw-w-1/4',
   'tw-p-4',
   'tw-rounded-md',
-  'tw-shadow-lg'
+  'tw-shadow-lg',
+  'tw-h-fit'
 ];
