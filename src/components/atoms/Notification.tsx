@@ -9,7 +9,7 @@ export enum NotificationType {
 
 interface NotificationProps {
   type: NotificationType
-  title?: string,
+  title?: string | null,
   description: string
 }
 
