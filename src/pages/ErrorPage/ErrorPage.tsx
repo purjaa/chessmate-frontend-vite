@@ -5,11 +5,14 @@ import { Notification, NotificationType } from '../../components';
 
 function ErrorPage() {
   return (
-    <main className={clsx(PublicPageStyle)}>
+    <main className={clsx(
+      PublicPageStyle,
+      'tw-items-center'
+    )}>
       <Notification
         type={NotificationType.Error}
-        header="Page not found"
-        text='Oops! The requested page can not be found.'
+        title="Page not found"
+        description='Oops! The requested page can not be found.'
       />
     </main>
   );
