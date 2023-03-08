@@ -7,6 +7,8 @@ import {
   HubConnection,
   HubConnectionBuilder
 } from '@microsoft/signalr';
+import { useAppSelector } from '../utils/appUtils';
+import { selectCurrentAuthToken } from '../utils/authUtils';
 
 const SignalRContext = createContext<null | HubConnection>(null);
 
@@ -15,12 +17,13 @@ interface SignalrProviderProps {
 }
 
 const SignalRProvider: React.FC<SignalrProviderProps> = ({ children }) => {
-
+  const token = useAppSelector(selectCurrentAuthToken);
   const [connection, setConnection] = useState<null | HubConnection>(null);
   const [isConnected, setIsConnected] = useState<boolean>(false);
   useEffect(() => {
     const connect = new HubConnectionBuilder()
-      .withUrl(`${import.meta.env.VITE_API_URL_BASE}/hubs/lobby`)
+      .withUrl(`${import.meta.env.VITE_API_URL_BASE}/hubs/lobby`,
+        { accessTokenFactory: () => token ? token : '' })
       .withAutomaticReconnect()
       .build();
 

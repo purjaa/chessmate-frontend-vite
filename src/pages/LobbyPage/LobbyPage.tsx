@@ -23,7 +23,8 @@ function LobbyPage() {
       setOnlineUsers(message.users);
     });
 
-    void signalRConnection?.send('SendUserOnlineMessage', { username: currentUsername });
+    signalRConnection?.send('SendUserOnlineMessage', { username: currentUsername })
+      .catch(e => console.log(e));
   }, []);
 
   return (
