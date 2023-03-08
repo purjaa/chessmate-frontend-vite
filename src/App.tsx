@@ -4,9 +4,8 @@ import {
   Routes,
   Route
 } from 'react-router-dom';
-import {
-  Header
-} from './components';
+import { SignalRProvider } from './app/signalr';
+import { Header } from './components';
 import {
   LoginPage,
   RegistrationPage,
@@ -25,7 +24,9 @@ function App() {
             path="/"
             element={
               <PrivateRoute>
-                <LobbyPage />
+                <SignalRProvider>
+                  <LobbyPage />
+                </SignalRProvider>
               </PrivateRoute>
             }
           />

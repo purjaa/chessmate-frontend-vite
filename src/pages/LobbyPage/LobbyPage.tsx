@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { SignalRContext } from '../../app/signalr';
 
 function LobbyPage() {
+
+  const signalRConnection = useContext(SignalRContext);
+
   return (
-    <div>Lobby Page</div>
+    <div>
+      <div>Lobby Page</div>
+      <div>
+        { signalRConnection?.state }
+      </div>
+    </div>
   );
 }
 
