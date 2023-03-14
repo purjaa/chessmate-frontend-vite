@@ -13,13 +13,13 @@ Run
 ```
 npm install
 ```
-to in the project root folder. After that everything should be set and the client application can be started with
+in the project root folder. After that everything should be set and the client application can be started with
 ```
 npm run dev
 ```
 Copy paste the localhost url to your browser to navigate to the application. Requires Chessmate-backend running for any server side functionality.
 
-## Current features:
+## Current features
 - user registration and logging in (any dummy email address can be used since the email address is not currently utilized, password should contain a digit, an uppercase character, a special character, and should be at least 8 characters long)
 - base for SignalR communication (Lobby with a real time list of online users, can be tested by registering two users to the system and opening two browser tabs and logging in as different users in each tab)
 - UI localization using i18n (Currently in English and Finnish where applied)
