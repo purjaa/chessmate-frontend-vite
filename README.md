@@ -4,7 +4,7 @@ Chessmate is a web application for playing chess online, a work in progress.
 
 ## Description
 
-Chessmate-client is a React application that relies on Chessmate-backend. The project is created using Vite and utilizes libraries such as tailwindcss, react-router, redux and redux-toolkit, i18next, signalr and so on. The idea is that Chessmate-backend handles all user and chess game logic and the client, the React app in this case, renders the current game state and gathers input, aka the moves from the players. SignalR is used to achieve the real time communication between the client and the backend. The purpose of the project is to learn and to have fun doing so.
+Chessmate-client is a React application that relies on Chessmate-backend. The project is created using Vite and is written in Typescript. It utilizes libraries such as tailwindcss, react-router, redux and redux-toolkit, i18next, signalr and so on. The idea is that Chessmate-backend handles all user and chess game logic and the client, the React app in this case, renders the current game state and gathers input, aka the moves from the players. SignalR is used to achieve the real time communication between the client and the backend. The purpose of the project is to learn and to have fun doing so.
 
 ## Installation
 
