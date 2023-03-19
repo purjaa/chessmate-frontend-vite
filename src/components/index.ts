@@ -7,3 +7,4 @@ export { default as Loader } from './atoms/Loader';
 export { default as Notification } from './atoms/Notification';
 export { NotificationType } from './atoms/Notification';
 export { default as UserList } from './lobby/UserList';
+export { default as GameSetupPane } from './lobby/GameSetupPane';

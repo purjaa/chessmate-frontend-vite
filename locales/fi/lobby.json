@@ -1,5 +1,9 @@
 {
   "title": "Tervetuola Chessmateen! Haasta vastustaja Online-käyttäjät -listasta tai hyväksy kutsu Pelikutsuista.",
   "onlineUsers": "Online-käyttäjät",
-  "gameInvitations": "Pelikutsut"
+  "gameInvitations": "Pelikutsut",
+  "setUpGame": "Järjestä peli",
+  "youAreChallenging": "Olet haastamassa käyttäjää",
+  "chooseSide": "Valitse puolesi",
+  "startGame": "Aloita peli!"
 }

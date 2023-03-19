@@ -7,7 +7,10 @@ import clsx from 'clsx';
 import { SignalRContext } from '../../app/signalr';
 import { useAppSelector } from '../../app/utils/appUtils';
 import { selectCurrentUsername } from '../../app/utils/authUtils';
-import { UserList } from '../../components';
+import {
+  UserList,
+  GameSetupPane
+} from '../../components';
 import { PrivatePageStyle } from '../CommonStyle';
 import { useTranslation } from 'react-i18next';
 
@@ -21,6 +24,7 @@ function LobbyPage() {
   const currentUsername = useAppSelector(selectCurrentUsername);
   const signalRConnection = useContext(SignalRContext);
   const [onlineUsers, setOnlineUsers] = useState<string[]>([]);
+  const [selectedOnlineUser, setSelectedOnlineUser] = useState<string | undefined>(undefined);
   const [inviteUsers/*, setInviteUsers*/] = useState<string[]>([]);
 
   useEffect(() => {
@@ -32,23 +36,33 @@ function LobbyPage() {
       .catch(e => console.log(e));
   }, []);
 
+  const handleOnlineUserClick = (user: string) => {
+    setSelectedOnlineUser(user);
+  };
+
   return (
     <main className={clsx(PrivatePageStyle)}>
       <h3 className='tw-text-center'>
         {t('lobby:title')}
       </h3>
-      <div className='tw-flex tw-h-full'>
+      <div className='tw-flex tw-h-full tw-gap-x-2'>
         <section className='tw-w-1/4 tw-grid tw-gap-y-2'>
           <UserList
             label={t('lobby:onlineUsers')}
             users={onlineUsers}
-            onUserClick={() => console.log('click!')}
+            onUserClick={handleOnlineUserClick}
           />
           <UserList
             label={t('lobby:gameInvitations')}
             users={inviteUsers}
-            onUserClick={() => console.log('click!')}
+            onUserClick={() => console.log('TODO!')}
           />
+        </section>
+        <section className='tw-w-3/4 tw-grid'>
+          {
+            selectedOnlineUser &&
+            <GameSetupPane opponent={selectedOnlineUser} />
+          }
         </section>
       </div>
     </main>

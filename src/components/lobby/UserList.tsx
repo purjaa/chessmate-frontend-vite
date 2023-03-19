@@ -6,7 +6,7 @@ import clsx from 'clsx';
 interface UserListProps {
   label: string;
   users: string[];
-  onUserClick: () => void;
+  onUserClick: (user: string) => void;
 }
 
 function UserList(props: UserListProps) {
@@ -22,7 +22,7 @@ function UserList(props: UserListProps) {
 
   const handleUserClick = ((user: string) => {
     setActive(user);
-    onUserClick();
+    onUserClick(user);
   });
 
   return (
