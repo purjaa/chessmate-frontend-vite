@@ -9,6 +9,7 @@ import { useAppSelector } from '../../app/utils/appUtils';
 import { selectCurrentUsername } from '../../app/utils/authUtils';
 import { UserList } from '../../components';
 import { PrivatePageStyle } from '../CommonStyle';
+import { useTranslation } from 'react-i18next';
 
 interface AllOnlineUsersMessage
 {
@@ -16,6 +17,7 @@ interface AllOnlineUsersMessage
 }
 
 function LobbyPage() {
+  const { t } = useTranslation(['lobby']);
   const currentUsername = useAppSelector(selectCurrentUsername);
   const signalRConnection = useContext(SignalRContext);
   const [onlineUsers, setOnlineUsers] = useState<string[]>([]);
@@ -32,16 +34,18 @@ function LobbyPage() {
 
   return (
     <main className={clsx(PrivatePageStyle)}>
-      <h3 className='tw-text-center'>Welcome to Chessmate! Challenge an opponent from Online Users or accept an invitation from Invitations.</h3>
+      <h3 className='tw-text-center'>
+        {t('lobby:title')}
+      </h3>
       <div className='tw-flex tw-h-full'>
         <section className='tw-w-1/4 tw-grid tw-gap-y-2'>
           <UserList
-            label='Online Users'
+            label={t('lobby:onlineUsers')}
             users={onlineUsers}
             onUserClick={() => console.log('click!')}
           />
           <UserList
-            label='Invitations'
+            label={t('lobby:gameInvitations')}
             users={inviteUsers}
             onUserClick={() => console.log('click!')}
           />
